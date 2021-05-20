@@ -1,5 +1,5 @@
 module reg_file(
-    input clk,
+    input clk, rst,
     input [2:0] rd_addr1,
     input [2:0] rd_addr2,
     input [2:0] wr_addr,
@@ -17,12 +17,19 @@ module reg_file(
     assign rd_data2 = regFile[rd_addr2];
     assign pc = regFile[3'b111];
 
+    integer i;
+
     always @(posedge clk) begin
-        if(wr_en == 1'b1) begin
-            regFile[wr_addr] <= wr_data;
-        end
-        if(pc_wr == 1'b1) begin
-            regFile[3'b111] <= pc_next;
+        if(rst == 1'b1) begin
+            for (i=0; i<8; i=i+1)
+                regFile[i] = 16'd0;
+        end else begin
+            if(wr_en == 1'b1) begin
+                regFile[wr_addr] <= wr_data;
+            end
+            if(pc_wr == 1'b1) begin
+                regFile[3'b111] <= pc_next;
+            end
         end
     end
 

@@ -9,11 +9,11 @@ module execute (
     alu alu_instance(.sel(alu_op), .arg1(), .arg2(), .result(), .carry_out(C_out),  .zero_out(Z_out));
 
     always @(*) begin
-        case (instr[40:37])
+        case (instr_in[40:37])
             0001:
                 alu_op <= 2'b00;
-                 
             default: 
+                alu_op <= 2'b00;
         endcase
     end
 

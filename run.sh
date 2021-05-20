@@ -1,0 +1,2 @@
+iverilog -o proc.vvp processor.v testbench.v stages/fetch.v stages/decode.v stages/register_read.v stages/execute.v stages/memory_access.v stages/write_back.v units/branch_predictor.v units/controller.v units/forwarding_unit.v units/hazard_detection_unit.v helper/alu.v helper helper/fifo.v helper/ram.v helper/reg_file.v helper/rom.v
+vvp proc.vvp
