@@ -4,9 +4,12 @@ module fifo (
     output [40:0] data_out
 );
 
+reg [40:0] temp_data;
+assign data_out = temp_data;
+
 always @(posedge clk) begin
     if(en == 1'b1)
-        data_out <= data_in;
+        temp_data <= data_in;
 end
     
 endmodule
